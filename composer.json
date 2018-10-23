@@ -4,7 +4,7 @@
     "description": "Simple PHP wrapper for Social Survey API",
     "keywords": ["social survey", "php", "api"],
     "homepage": "https://github.com/alquemie/socialsurvey-api",
-    "license": "GPL3+",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Chris Carrel",

@@ -32,6 +32,16 @@ class SocialSurveyApiClient
     protected $authkey;
 
     /**
+     * @var string
+     */
+    protected $userFilter = "";
+
+    /**
+     * @var boolean
+     */
+    protected $includeTeamFilter = true;
+
+    /**
      * @var int
      */
     protected $responseCode = 0;
@@ -123,6 +133,14 @@ class SocialSurveyApiClient
         return $this->client;
     }
 
+    public function setUser($user) {
+        $this->userFilter = $user;
+    }
+
+    public function includeTeam($teamVal) {
+        $this->includeTeamFilter = $teamVal;
+    }
+
     /**
      * @param string $name
      * @param array $arguments
@@ -134,6 +152,8 @@ class SocialSurveyApiClient
         if (!in_array($name, self::$validMethods)) {
             throw new SocialSurveyException(sprintf('Invalid Social Survey API method (%s)', $name));
         }
+
+        $arguments = array_merge( ['user' => $this->userFilter, 'includeManagedTeam' => $this->includeTeamFilter], $arguments);
 
         return $this->doRequest($name, $arguments);
     }
