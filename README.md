@@ -11,7 +11,7 @@ depends on PHP 5.4+, Guzzle 6+.
 Add ``alquemie/socialsurvey-api`` as a require dependency in your ``composer.json`` file:
 
 ```sh
-php composer.phar require alquemie/socialsurvey-api:1.0.0
+php composer.phar require alquemie/socialsurvey-api:0.1.0
 ```
 
 ## Usage
@@ -25,22 +25,21 @@ $client = new SocialSurveyApiClient('socialsurvey-key');
 Make requests with a specific API call method:
 
 ```php
-// Run GetSearchResults
+// Run surveys
 $response = $client->execute(
-    'GetSearchResults', 
+    'surveys', 
     [
-        'address' => '1600 Pennsylvania Ave NW', 
-        'citystatezip' => 'Washington DC 20006'
+        'user' => 'user@email.com'
     ]
 );
 ```
 
 Any Social Survey API call will work. Valid methods are:
 
-- GetZestimate
-- GetSearchResults
+- surveys
+- surveycount
 
 
 ## License
 
-GPL3+ license.
+GPL3 or later license.
