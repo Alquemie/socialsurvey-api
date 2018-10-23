@@ -211,7 +211,13 @@ class SocialSurveyApiClient
             }
 
             if ($response->isSuccessful() && array_key_exists('data', $responseArray)) {
-                $response->setData($responseArray['data']);
+                if ( array_key_exists('surveys', $responseArray['data']) ) {
+                    $response->setData($responseArray['data']['surveys']);
+                } elseif ( array_key_exists('surveyStats', $responseArray['data']) ) {
+                    $response->setData($responseArray['data']['surveyStats']);
+                } else  {
+                    $response->setData($responseArray['data']);
+                }
             }
         } else {
             $this->fail($response, $rawResponse, true);
